@@ -648,8 +648,7 @@ Contributions, issues, and feature requests are welcome!
 3. **Push to the branch** (`git push origin feature/AmazingFeature`).
 4. **Open a Pull Request** describing your changes and link any relevant issues.
 
-### Core Team
-- **Platform Architecture & RAG Engineering**: ResearchRAG Team
+### Project Contributors
+- **Project Lead & Platform Architecture**: Revant Khanna
+- **RAG Engineering & Full-Stack Development**: Ramesh
 - **Feedback & Support**: Open an issue or join our community discussions.
-#   r e s e a r c h - p a p e r - a n a l y z e r  
- 
