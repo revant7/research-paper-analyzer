@@ -125,7 +125,6 @@ logs/
 # Vector databases & local model caches
 .chroma/
 chroma.sqlite3
-models/
 huggingface/
 .cache/
 

@@ -577,6 +577,31 @@ Full-lifecycle tests verify:
 
 ## Deployment
 
+### AWS EC2 one-command deployment
+After cloning the repository on an Ubuntu or Amazon Linux EC2 instance:
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd research-paper-analyzer
+chmod +x deploy-ec2.sh
+sudo ./deploy-ec2.sh
+```
+
+In the EC2 security group, allow inbound TCP port 80 from `0.0.0.0/0` (and port 22 for SSH).
+The script installs Docker and Compose, creates a protected `.env` with generated database and JWT secrets,
+builds all containers, and starts the app on port 80. Open `http://<EC2-PUBLIC-IP>/`.
+Set `PUBLIC_URL=https://your-domain.example` or `PUBLIC_URL=http://<EC2-PUBLIC-IP>` before running
+if you want to explicitly control the backend CORS origin.
+
+Optional API keys can be added to `.env` after deployment:
+
+```bash
+LLM_PROVIDER=openai
+OPENAI_API_KEY=your-key
+```
+
+After changing `.env`, redeploy with `sudo ./deploy-ec2.sh`.
+
 ### Production Docker Compose
 For single-node cloud VM deployments (AWS EC2, DigitalOcean Droplet, Hetzner Cloud):
 1. Configure a production domain with SSL termination via Certbot or Cloudflare.
