@@ -62,7 +62,7 @@ touch .env
 append_env_if_missing POSTGRES_USER "research_rag"
 append_env_if_missing POSTGRES_PASSWORD "$(random_hex 24)"
 append_env_if_missing POSTGRES_DB "research_rag"
-append_env_if_missing ENVIRONMENT "production"
+append_env_if_missing ENVIRONMENT "development"
 append_env_if_missing JWT_SECRET_KEY "$(random_hex 32)"
 append_env_if_missing JWT_ALGORITHM "HS256"
 append_env_if_missing JWT_EXPIRATION_MINUTES "1440"
@@ -78,6 +78,13 @@ append_env_if_missing TOP_K_RESULTS "5"
 append_env_if_missing SIMILARITY_THRESHOLD "0.3"
 append_env_if_missing LLM_TEMPERATURE "0.7"
 append_env_if_missing MAX_FILE_SIZE_MB "50"
+
+ENVIRONMENT_VALUE="$(sed -n 's/^ENVIRONMENT=//p' .env | tail -n 1)"
+LLM_PROVIDER_VALUE="$(sed -n 's/^LLM_PROVIDER=//p' .env | tail -n 1)"
+if [[ "$ENVIRONMENT_VALUE" == "production" && "$LLM_PROVIDER_VALUE" == "mock" ]]; then
+  sed -i 's/^ENVIRONMENT=.*/ENVIRONMENT=development/' .env
+  echo "Mock LLM is test-only; switching ENVIRONMENT to development."
+fi
 
 if [[ -n "${PUBLIC_URL:-}" ]]; then
   FRONTEND_URL="$PUBLIC_URL"

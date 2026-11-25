@@ -594,6 +594,8 @@ Set `PUBLIC_URL=https://your-domain.example` or `PUBLIC_URL=http://<EC2-PUBLIC-I
 if you want to explicitly control the backend CORS origin.
 The backend uses CPU-only PyTorch wheels and does not download NVIDIA CUDA libraries.
 After pulling an update, rerun `sudo ./deploy-ec2.sh` to rebuild and restart the containers.
+The default configuration is for testing: backend mock responses are enabled, while Puter.js
+continues to provide browser-side AI features. Do not use this mock configuration for production.
 
 Optional API keys can be added to `.env` after deployment:
 
