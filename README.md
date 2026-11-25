@@ -592,6 +592,8 @@ The script installs Docker and Compose, creates a protected `.env` with generate
 builds all containers, and starts the app on port 80. Open `http://<EC2-PUBLIC-IP>/`.
 Set `PUBLIC_URL=https://your-domain.example` or `PUBLIC_URL=http://<EC2-PUBLIC-IP>` before running
 if you want to explicitly control the backend CORS origin.
+The backend uses CPU-only PyTorch wheels and does not download NVIDIA CUDA libraries.
+After pulling an update, rerun `sudo ./deploy-ec2.sh` to rebuild and restart the containers.
 
 Optional API keys can be added to `.env` after deployment:
 
